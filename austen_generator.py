@@ -1,3 +1,5 @@
+import cPickle
+import os
 import random
 import urllib2
 
@@ -7,11 +9,12 @@ def get_online_text(url):
         text = website.read()
         return text
     except urllib2.HTTPError as e:
-        print("Cannot retrieve text from url {} due to error: {}".format(
-            url, e))
+        print("Cannot retrieve text from url {} due to error: {}"
+              .format(url, e))
 
 
 def get_trigrams(sentence):
+    sentence = sentence.replace('\r\n', ' ')  # remove stray line ends
     words = sentence.split(' ')
     trigrams = {}
     for i, w in enumerate(words):
@@ -23,7 +26,7 @@ def get_trigrams(sentence):
                 # key doesn't exist yet
                 trigrams[key] = [words[i+2]]
         except IndexError:
-            pass  # When we reach the end and run out of i+1 words
+            pass  # Reached the end, ran out of i+1 words
 
     return trigrams
 
@@ -42,9 +45,7 @@ def generate_text(trigram_dict, first_words, string_so_far=''):
     result = "{} {}".format(first_words, next_word)
     next_key = get_next_key(result)
 
-    # Remove those annoying musical notes
-    # It's a DOS/unix line endings thing
-    string_so_far += " " + next_word.replace('\r\n', ' ')
+    string_so_far += " " + next_word
 
     return generate_text(trigram_dict, next_key, string_so_far)
 
@@ -55,8 +56,19 @@ def get_next_key(text):
 
 
 if __name__ == "__main__":
-    pride_and_prejudice = get_online_text("http://www.gutenberg.org/files/1342/1342-0.txt")
-    prejudice_grams = get_trigrams(pride_and_prejudice)
+    storage = 'pride_and_prejudice.txt'
+    if not os.path.exists(storage):
+        print("Getting Austen text online ...\n\n")
+        pride_and_prejudice = get_online_text("http://www.gutenberg.org/files/1342/1342-0.txt")
+        prejudice_grams = get_trigrams(pride_and_prejudice)
+
+        with open(storage, 'wb') as myfile:
+            cPickle.dump(prejudice_grams, myfile)
+
+    else:
+        print("Using stored Austen trigram dict we prepared earlier\n\n")
+        with open(storage) as myfile:
+            prejudice_grams = cPickle.load(myfile)
 
     first_words = random.choice(prejudice_grams.keys())
     prejudice_rand = generate_text(prejudice_grams, first_words)
