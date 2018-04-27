@@ -2,7 +2,7 @@ A text generator that uses trigram analysis to create passages of Jane Austen-st
 
 The process of creating trigrams is described in 
 
-[Code Kata 14: Tom Swift Under The Milkwood](www.codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
+[Code Kata 14: Tom Swift Under The Milkwood](http://codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
 
 An example text generated from Pride and Prejudice:
 
