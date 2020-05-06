@@ -1,12 +1,26 @@
-A text generator that uses trigram analysis to create passages of Jane Austen-style prose.
+A text generator that uses trigram analysis to create plausible-sounding passages from everyone's favourite Austen novel. 
 
-The process of creating trigrams is described in 
+Example text generated from Pride and Prejudice:
 
-[Code Kata 14: Tom Swift Under The Milkwood](http://codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
+>More unequal, than she has got all the genuine delicacy of her disposition. 
+>
+>Had Lydia and her brother appeared, and she thought of fixing him; and it was performed when the ladies all felt that whatever desire Miss Darcy I was not exactly recollect the circumstances, though he had all his endeavours, and when they chose it, but Colonel Fitzwilliam himself—from whom she lived in the case _here_. Mr. and Mrs. Bennet, “that you were a great reader, and I suppose is one of a fortnight. She danced next with an earnest though guarded inquiry; and they were all dancing together at Netherfield.” 
+>
+>Elizabeth was pleased to approve them. They have not met since the adventure of Wednesday. His reception, however, was no part of this news had been used to have noticed what passed, "As to Mr. Darcy, only for the first dance!” 
+>
+>“Oh! my dear Charlotte and her head full of joy was over, and though up, was very little to be had; and the others coming out?” 
+>
+>“I do not know what follows.” 
+>
+>“You are mistaken, Madam."
 
-Example texts generated from Pride and Prejudice:
+Written in Python 2.7 using only native modules. Run it by calling
 
->But checking himself, he added, “you will give me leave to say, very impolitic too--for it is what a disgraceful light might it not been industriously circulated by yourselves? Do you pay no regard to my cousin, she would have talked to Bingley of course wish to be endured! But it was not to be so--but still they admired her and liked her, and expressed his hopes of being admitted to a sense of her heart swelling with indignation. After watching her a slight bow, and moved away
+```bash
+$ python austen_generator.py
+```
 
->His attachment to Hertfordshire. Anything beyond the words are often used synonymously. A person may be traced to pride; and pride had revolted in his letter, you may stay a little compassion on my diligence and care. Send back your answer as fast as I have nothing to prevent your feeling the loss of their employments. Very frequently were they reproached for this insensibility by Kitty and Lydia.  “Do let us come to the society of Hertfordshire; her mild and steady gravity.  At length, however, our kind uncle has laid down to posterity with all the happy schemes, which the phrase “Project Gutenberg” appears, or with which the good news? Miss Lydia Bennet come upon the spot to share with Jane had suffered, and still continued to apologise.
+in the command line.
+
+The process of creating trigrams is described in [Code Kata 14: Tom Swift Under The Milkwood](http://codekata.com/kata/kata14-tom-swift-under-the-milkwood/)
 
