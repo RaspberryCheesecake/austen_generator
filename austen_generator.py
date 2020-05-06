@@ -2,6 +2,8 @@ import cPickle
 import os
 import random
 import urllib2
+import re
+
 
 def get_online_text(url):
     try:
@@ -14,8 +16,9 @@ def get_online_text(url):
 
 
 def get_trigrams(sentence):
-    sentence = sentence.replace('\r\n', ' ')  # remove stray line ends
-    words = sentence.split(' ')
+    sentence = sentence.replace('\r\n', '')  # remove stray line ends
+    words = re.findall(r'[^\s]+', sentence)  # Don't match blank strings!
+
     trigrams = {}
     for i, w in enumerate(words):
         try:
@@ -70,7 +73,9 @@ if __name__ == "__main__":
         with open(storage) as myfile:
             prejudice_grams = cPickle.load(myfile)
 
-    first_words = random.choice(prejudice_grams.keys())
-    prejudice_rand = generate_text(prejudice_grams, first_words)
-    
+    seed = random.choice(prejudice_grams.keys())
+    prejudice_rand = generate_text(prejudice_grams, seed)
+
     print(prejudice_rand)
+    with open('output.txt', 'w') as fout:
+        fout.write(prejudice_rand)
