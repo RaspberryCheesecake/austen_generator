@@ -58,6 +58,12 @@ def get_next_key(text):
     return " ".join(words[-2:])
 
 
+def fix_up_punctuation(my_text_string):
+    words = re.findall(r'[^\s]+', my_text_string)
+    words[0] = words[0].title()  # Capitalise first letter always
+    return " ".join(words)
+
+
 if __name__ == "__main__":
     storage = 'pride_and_prejudice.txt'
     if not os.path.exists(storage):
@@ -74,8 +80,12 @@ if __name__ == "__main__":
             prejudice_grams = cPickle.load(myfile)
 
     seed = random.choice(prejudice_grams.keys())
-    prejudice_rand = generate_text(prejudice_grams, seed)
+    prejudice_random_paragraph = generate_text(prejudice_grams, seed)
 
-    print(prejudice_rand)
+    to_display = fix_up_punctuation(prejudice_random_paragraph)
+
+    print(to_display)
+
+
     with open('output.txt', 'w') as fout:
-        fout.write(prejudice_rand)
+        fout.write(to_display)
